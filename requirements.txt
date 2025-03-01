@@ -1,0 +1,7 @@
+echo 'streamlit
+ibm-watson
+pandas
+numpy
+scikit-learn
+pytest
+' > requirements.txt

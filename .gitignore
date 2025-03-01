@@ -1,0 +1,12 @@
+echo 'venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.env
+*.DS_Store
+models/serialized/
+data/processed/
+' > .gitignore
