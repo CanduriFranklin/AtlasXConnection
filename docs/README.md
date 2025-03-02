@@ -93,3 +93,40 @@ Use the [`psycopg2`](https://pypi.org/project/psycopg2/) module to connect and r
 AtlasXConnection is a comprehensive solution for public network management, using advanced technologies such as AI, cloud computing, and IoT to improve the efficiency and sustainability of networks in underserved regions.
 
 ## 8. Repository Structure
+
+/AtlasXConnection
+│
+├── /data # Historical and training data
+│  ├── raw/ # Raw data
+│  ├── processed/ # Processed and ready-to-use data
+│  └── datasets/ # Datasets for training
+│
+├── /models # Trained and serialized models
+│  ├── granite/ # Tuned Granite models
+│  └── serialized/ # Serialized models for production use
+│
+├── /src # Project source code
+│   ├── __init__.py
+│   ├── config.py # Configuration file (credentials, URLs, etc.)
+│   ├── main.py # Application entry point (Streamlit interface)
+│   ├── acquisitions.py # Policies and acquisitions module
+│   ├── planning.py # Design and planning module
+│   ├── resources.py # Resource allocation module
+│   ├── utils.py # Helper functions (inferences, API connections, etc.)
+│   ├── training.py # Script to fine-tune Granite models
+│   └── database.py # Connection and operations with PostgreSQL
+│
+├── /tests # Unit tests
+│  ├── __init__.py
+│  ├── test_adquisiciones.py
+│  ├── test_planificacion.py
+│  └── test_recursos.py
+│
+├── /docs # Project documentation
+│  ├── requirements.txt # Project dependencies
+│  ├── README.md # Main documentation
+│  └── user_guide.md # User guide for the platform
+│
+├── .gitignore # Files and folders ignored by Git
+├── Dockerfile # Configuration to containerize the application
+└── requirements.txt # Project dependencies
