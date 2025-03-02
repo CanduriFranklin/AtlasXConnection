@@ -1,7 +1,4 @@
-echo 'streamlit
-ibm-watson
-pandas
-numpy
-scikit-learn
+streamlit
+requests
+psycopg2-binary
 pytest
-' > requirements.txt

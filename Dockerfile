@@ -1,4 +1,4 @@
-echo 'FROM python:3.8-slim
+FROM python:3.8-slim
 
 WORKDIR /app
 
@@ -8,4 +8,3 @@ RUN pip install -r requirements.txt
 COPY . .
 
 CMD ["streamlit", "run", "src/main.py"]
-' > Dockerfile

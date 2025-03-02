@@ -1,9 +1,10 @@
-echo 'import streamlit as st
-from src.adquisiciones import analizar_adquisiciones
-from src.planificacion import simular_red, predecir_mantenimiento
-from src.recursos import asignar_recursos
+# src/main.py
+import streamlit as st
+from .adquisiciones import analizar_adquisiciones
+from .planificacion import simular_red, predecir_mantenimiento
+from .recursos import asignar_recursos
 
-st.title("AtlasXConnection - Plataforma de Gestión de Redes Públicas")
+st.title("AtlasXConnection - Public Network Management Platform")
 
 # Menú de opciones
 opcion = st.sidebar.selectbox(
@@ -11,24 +12,21 @@ opcion = st.sidebar.selectbox(
     ["Políticas y Adquisiciones", "Diseño y Planificación", "Asignación de Recursos"]
 )
 
+def manejar_modulo(titulo, texto_area, funcion):
+    st.header(titulo)
+    datos = st.text_area(texto_area)
+    if st.button("Ejecutar"):
+        try:
+            resultado = funcion(datos)
+            st.write(resultado)
+        except Exception as e:
+            st.error(f"Error al ejecutar la función: {e}")
+
 if opcion == "Políticas y Adquisiciones":
-    st.header("Análisis de Adquisiciones")
-    datos = st.text_area("Ingresa los datos de adquisiciones")
-    if st.button("Analizar"):
-        resultado = analizar_adquisiciones(datos)
-        st.write(resultado)
+    manejar_modulo("Análisis de Adquisiciones", "Ingresa los datos de adquisiciones", analizar_adquisiciones)
 
 elif opcion == "Diseño y Planificación":
-    st.header("Simulación de Redes")
-    datos = st.text_area("Ingresa los datos de la red")
-    if st.button("Simular"):
-        resultado = simular_red(datos)
-        st.write(resultado)
+    manejar_modulo("Simulación de Redes", "Ingresa los datos de la red", simular_red)
 
 elif opcion == "Asignación de Recursos":
-    st.header("Asignación de Recursos")
-    datos = st.text_area("Ingresa los datos de recursos")
-    if st.button("Asignar"):
-        resultado = asignar_recursos(datos)
-        st.write(resultado)
-' > src/main.py
+    manejar_modulo("Asignación de Recursos", "Ingresa los datos de recursos", asignar_recursos)
