@@ -1,6 +1,5 @@
-# Project Title
+# Project Title: AtlasXConnection
 
-               AtlasXConnection
 AI-Powered Public Network Management Platform
 
 ## 2. Brief Description
