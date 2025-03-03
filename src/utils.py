@@ -1,7 +1,7 @@
 # src/utils.py# src/utils.py
 import requests
-from .config import API_KEY, SERVICE_URL, PROJECT_ID, MODEL_ID
-from .database import execute_query
+from src.config import API_KEY, SERVICE_URL, PROJECT_ID, MODEL_ID
+from src.database import execute_query
 
 def realizar_inferencia(prompt):
     """
@@ -25,27 +25,23 @@ def realizar_inferencia(prompt):
         "project_id": PROJECT_ID
     }
 
-    try:
-        response = requests.post(
-            SERVICE_URL,
-            headers=headers,
-            json=body
-        )
+    response = requests.post(
+        SERVICE_URL,
+        headers=headers,
+        json=body
+    )
 
-        response.raise_for_status()
+    if response.status_code != 200:
+        raise Exception(f"Non-200 response: {response.text}")
 
-        data = response.json()
-        resultado = data["results"][0]["generated_text"]
+    data = response.json()
+    resultado = data["results"][0]["generated_text"]
 
-        # Guardar el resultado en la base de datos
-        query = """
-        INSERT INTO inferencias (prompt, resultado)
-        VALUES (%s, %s);
-        """
-        execute_query(query, (prompt, resultado))
+    # Guardar el resultado en la base de datos
+    query = """
+    INSERT INTO inferencias (prompt, resultado)
+    VALUES (%s, %s);
+    """
+    execute_query(query, (prompt, resultado))
 
-        return resultado
-    except requests.exceptions.RequestException as e:
-        raise Exception(f"Error en la solicitud: {e}")
-    except Exception as e:
-        raise Exception(f"Error al realizar la inferencia: {e}")
+    return resultado
